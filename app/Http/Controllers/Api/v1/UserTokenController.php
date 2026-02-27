@@ -37,7 +37,10 @@ class UserTokenController extends Controller
 
     public function destroy()
     {
-        request()->user()->currentAccessToken()->delete();
-        return response()->json(['message' => 'Logged out successfully']);
+        $deleted =  request()->user()->currentAccessToken()->delete();
+        if($deleted) {
+            return response()->json(['message' => 'Logged out successfully']);
+        }
+        return response()->json(['message' => 'Failed to log out, token was not deleted'], 500);
     }
 }
