@@ -35,7 +35,7 @@ class UserController extends Controller
             return response()->json([
                 'message' => 'User created successfully.',
                 'data' => $user,
-                'token' => $token->plainTextToken,
+                'access_token' => $token->plainTextToken,
             ], 201);
         });
     }
