@@ -14,7 +14,7 @@ class UserRegisterTest extends TestCase
 
     protected string $endpoint = '/v1/users';
 
-    public function user_can_register_and_receive_token(): void
+    public function test_user_can_register_and_receive_token(): void
     {
         Notification::fake();
 
