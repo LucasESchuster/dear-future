@@ -18,7 +18,7 @@ class UserAuthTest extends TestCase
 
        protected string $endpoint = '/v1/users/auth/token';
 
-    public function user_can_login_and_receive_token(): void
+    public function test_user_can_login_and_receive_token(): void
     {
         $user = User::factory()->create([
             'email' => 'test@example.com',
@@ -44,7 +44,7 @@ class UserAuthTest extends TestCase
         $this->assertDatabaseCount('personal_access_tokens', 1);
     }
 
-    public function unverified_user_cannot_login(): void
+    public function test_unverified_user_cannot_login(): void
     {
         $user = User::factory()->create([
             'email' => 'test@example.com',
@@ -65,7 +65,7 @@ class UserAuthTest extends TestCase
         $this->assertDatabaseCount('personal_access_tokens', 0);
     }
 
-    public function user_cannot_login_with_wrong_password(): void
+    public function test_user_cannot_login_with_wrong_password(): void
     {
         $user = User::factory()->create([
             'email' => 'test@example.com',
