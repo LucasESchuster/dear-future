@@ -1,0 +1,33 @@
+name: Run Laravel Tests
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Copy .env.example to .env
+        run: | 
+          cp .env.example .env
+      - name: Install Laravel dependencies
+        run: |
+          docker run --rm \
+          -u "$(id -u):$(id -g)" \
+          -v $(pwd):/var/www/html \
+          -w /var/www/html \
+          laravelsail/php82-composer:latest \
+          composer install --ignore-platform-reqs
+            
+      - name: Run Laravel Sail
+        run: |
+          ./vendor/bin/sail up -d
+          ./vendor/bin/sail artisan key:generate
+          
+      - name: Run Tests
+        run: |
+          ./vendor/bin/sail artisan test
