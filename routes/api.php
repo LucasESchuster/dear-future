@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\v1\MessageController;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\UserEmailVerificationController;
 use App\Http\Controllers\Api\v1\UserTokenController;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
 
-    Route::get('/', function (Request $request) {
+    Route::get('/', function () {
         return response()->json([
             'message' => 'Welcome to the Dear Future API!',
         ]);
@@ -21,7 +22,10 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::delete('users/auth/token', [UserTokenController::class, 'destroy']);
+        
+        Route::post('messages', [MessageController::class, 'store']);
     });
+
 
     Route::post('users/auth/token', [UserTokenController::class, 'store']);
 

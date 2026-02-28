@@ -6,9 +6,9 @@ Esse projeto tem como objetivo funcionar como uma cápsula do tempo. O usuário 
 ## Objetivos do projeto
 
 ### Endpoints:
-- Cadastro de usuário. 
-- Login de usuário.
-- Cadastro de mensagem.
+- Cadastro de usuário. ✅
+- Login de usuário. ✅
+- Cadastro de mensagem. ✅
 - Cancelamento de envio da mensagem.
 - Listar a data de quando as mensagens serão enviadas.
 
