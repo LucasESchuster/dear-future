@@ -22,8 +22,9 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::delete('users/auth/token', [UserTokenController::class, 'destroy']);
-        
+
         Route::post('messages', [MessageController::class, 'store']);
+        Route::delete('messages/{id}', [MessageController::class, 'destroy']);
     });
 
 
